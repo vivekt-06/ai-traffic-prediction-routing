@@ -1,0 +1,105 @@
+{
+  "name": "lstm",
+  "class": "SeqModel",
+  "hidden": 64,
+  "seq_len": 24,
+  "lag_hours": 24,
+  "input_scale": 1000.0,
+  "input_channels": [
+    "count/SCALE",
+    "log1p(count)/8"
+  ],
+  "static_features": [
+    "speed_limit/80",
+    "frc/6",
+    "min(distance_km,1)"
+  ],
+  "time_features": [
+    "hour_sin",
+    "hour_cos",
+    "dayofweek/6",
+    "is_weekend"
+  ],
+  "target": "hourly probe_count",
+  "target_scale": 1000.0,
+  "lr": 0.002,
+  "optimizer": "Adam",
+  "epochs": 1,
+  "best_epoch": 1,
+  "steps_per_epoch": 400,
+  "batch": 8192,
+  "seed": 42,
+  "torch": "2.11.0+cu130",
+  "python": "3.13.15",
+  "device": "cuda",
+  "command": "scripts/train_deep.py --smoke",
+  "n_parameters": 55361,
+  "param_shapes": {
+    "rnn.weight_ih_l0": [
+      256,
+      2
+    ],
+    "rnn.weight_hh_l0": [
+      256,
+      64
+    ],
+    "rnn.bias_ih_l0": [
+      256
+    ],
+    "rnn.bias_hh_l0": [
+      256
+    ],
+    "rnn.weight_ih_l1": [
+      256,
+      64
+    ],
+    "rnn.weight_hh_l1": [
+      256,
+      64
+    ],
+    "rnn.bias_ih_l1": [
+      256
+    ],
+    "rnn.bias_hh_l1": [
+      256
+    ],
+    "head.0.weight": [
+      64,
+      71
+    ],
+    "head.0.bias": [
+      64
+    ],
+    "head.2.weight": [
+      1,
+      64
+    ],
+    "head.2.bias": [
+      1
+    ]
+  },
+  "panel_fingerprint": "869b424b62b26051",
+  "splits": {
+    "train": [
+      "2024-08-12 00:00:00",
+      "2024-08-23 23:00:00"
+    ],
+    "val": [
+      "2024-08-24 00:00:00",
+      "2024-08-26 23:00:00"
+    ],
+    "test": [
+      "2024-08-27 00:00:00",
+      "2024-08-30 23:00:00"
+    ]
+  },
+  "model_selection": "epoch with the lowest validation MAE",
+  "training_curve": [
+    {
+      "epoch": 1,
+      "train_mse_scaled": 0.03662677016109228,
+      "val_MAE": 111.24290466308594
+    }
+  ],
+  "adjacency": null
+}

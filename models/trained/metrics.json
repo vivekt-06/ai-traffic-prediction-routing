@@ -1,0 +1,309 @@
+{
+  "generated_at": "2026-10-20T14:05:36+00:00",
+  "target": "probe_count (hourly)",
+  "split": {
+    "train": [
+      "2024-08-12 00:00:00",
+      "2024-08-23 23:00:00"
+    ],
+    "val": [
+      "2024-08-24 00:00:00",
+      "2024-08-26 23:00:00"
+    ],
+    "test": [
+      "2024-08-27 00:00:00",
+      "2024-08-30 23:00:00"
+    ]
+  },
+  "split_rows": {
+    "train": 7182144,
+    "val": 1795536,
+    "test": 2394048
+  },
+  "train_subsample_rows": 400000,
+  "default_model": "historical_average",
+  "default_model_rule": "lowest validation MAE among servable trained models",
+  "models": {
+    "random_forest": {
+      "status": "trained",
+      "trained_at": "2026-10-20T14:04:22+00:00",
+      "fit_seconds": 26.3,
+      "uses_weather": false,
+      "servable": true,
+      "val": {
+        "n": 1795536,
+        "n_dropped_nonfinite": 0,
+        "MAE": 25.732577262772327,
+        "RMSE": 54.98752128207831,
+        "MAPE": 40.79379921621705,
+        "R2": 0.9240520547333677,
+        "WAPE": 20.433012770860135,
+        "mape_coverage": 0.9361165690913466
+      },
+      "test": {
+        "n": 2394048,
+        "n_dropped_nonfinite": 0,
+        "MAE": 25.150336364664884,
+        "RMSE": 52.81227195336419,
+        "MAPE": 36.01900884563018,
+        "R2": 0.93279814527838,
+        "WAPE": 19.114084511235646,
+        "mape_coverage": 0.9382614717833561,
+        "congestion_level_agreement": 0.6172712493650921
+      },
+      "n_train_rows": 400000
+    },
+    "xgboost": {
+      "status": "trained",
+      "trained_at": "2026-10-20T14:04:34+00:00",
+      "fit_seconds": 4.4,
+      "uses_weather": false,
+      "servable": true,
+      "val": {
+        "n": 1795536,
+        "n_dropped_nonfinite": 0,
+        "MAE": 24.27742088357587,
+        "RMSE": 50.820076500178104,
+        "MAPE": 43.15453272076593,
+        "R2": 0.935127838062096,
+        "WAPE": 19.277542466580304,
+        "mape_coverage": 0.9361165690913466
+      },
+      "test": {
+        "n": 2394048,
+        "n_dropped_nonfinite": 0,
+        "MAE": 25.133272261034257,
+        "RMSE": 52.23110770025565,
+        "MAPE": 38.67795133903258,
+        "R2": 0.9342690316940917,
+        "WAPE": 19.10111590858258,
+        "mape_coverage": 0.9382614717833561,
+        "congestion_level_agreement": 0.616707350896891
+      },
+      "n_train_rows": 400000,
+      "best_iteration": 221
+    },
+    "historical_average": {
+      "status": "trained",
+      "trained_at": "2026-10-20T14:03:54+00:00",
+      "fit_seconds": 0.0,
+      "uses_weather": false,
+      "servable": true,
+      "val": {
+        "n": 1795536,
+        "n_dropped_nonfinite": 0,
+        "MAE": 24.02217517616314,
+        "RMSE": 49.3118750234227,
+        "MAPE": 38.35810492517568,
+        "R2": 0.9389211607165602,
+        "WAPE": 19.074864019489162,
+        "mape_coverage": 0.9361165690913466
+      },
+      "test": {
+        "n": 2394048,
+        "n_dropped_nonfinite": 0,
+        "MAE": 21.245495144536623,
+        "RMSE": 44.56883555444465,
+        "MAPE": 29.007389840142206,
+        "R2": 0.9521398415180926,
+        "WAPE": 16.146431752946878,
+        "mape_coverage": 0.9382614717833561,
+        "congestion_level_agreement": 0.673209559708076
+      },
+      "n_train_rows": 7182144
+    },
+    "linear_regression": {
+      "status": "trained",
+      "trained_at": "2026-10-20T14:03:55+00:00",
+      "fit_seconds": 0.1,
+      "uses_weather": false,
+      "servable": true,
+      "val": {
+        "n": 1795536,
+        "n_dropped_nonfinite": 0,
+        "MAE": 32.81169611644962,
+        "RMSE": 66.1292435052161,
+        "MAPE": 86.96434816236307,
+        "R2": 0.8901563762905452,
+        "WAPE": 26.05420354652677,
+        "mape_coverage": 0.9361165690913466
+      },
+      "test": {
+        "n": 2394048,
+        "n_dropped_nonfinite": 0,
+        "MAE": 27.687287619953043,
+        "RMSE": 54.73420005789559,
+        "MAPE": 66.58746222930624,
+        "R2": 0.9278179673039665,
+        "WAPE": 21.042150203533573,
+        "mape_coverage": 0.9382614717833561,
+        "congestion_level_agreement": 0.6056983819873286
+      },
+      "n_train_rows": 400000
+    },
+    "lstm": {
+      "status": "trained",
+      "servable": true,
+      "uses_weather": false,
+      "trained_at": "2026-10-20T13:21:04+00:00",
+      "fit_seconds": 679.5,
+      "epochs": 30,
+      "best_epoch": 8,
+      "device": "cuda",
+      "seed": 42,
+      "smoke_run": false,
+      "n_parameters": 55361,
+      "train_command": "scripts/train_deep.py --models lstm gru --epochs 30",
+      "val": {
+        "n": 1795536,
+        "n_dropped_nonfinite": 0,
+        "MAE": 27.270977105839787,
+        "RMSE": 58.0553193427873,
+        "MAPE": 53.80703737394402,
+        "R2": 0.9153412641408335,
+        "WAPE": 21.6545827410614,
+        "mape_coverage": 0.9361165690913466
+      },
+      "test": {
+        "n": 2394048,
+        "n_dropped_nonfinite": 0,
+        "MAE": 26.79425657820492,
+        "RMSE": 56.5119673865524,
+        "MAPE": 47.638990977963445,
+        "R2": 0.9230528726048127,
+        "WAPE": 20.363452688095474,
+        "mape_coverage": 0.9382614717833561,
+        "congestion_level_agreement": 0.6229691301093379
+      }
+    },
+    "gru": {
+      "status": "trained",
+      "servable": true,
+      "uses_weather": false,
+      "trained_at": "2026-10-20T13:31:26+00:00",
+      "fit_seconds": 621.1,
+      "epochs": 30,
+      "best_epoch": 8,
+      "device": "cuda",
+      "seed": 42,
+      "smoke_run": false,
+      "n_parameters": 42689,
+      "train_command": "scripts/train_deep.py --models lstm gru --epochs 30",
+      "val": {
+        "n": 1795536,
+        "n_dropped_nonfinite": 0,
+        "MAE": 27.740290380346543,
+        "RMSE": 58.08691527343656,
+        "MAPE": 74.21549400673189,
+        "R2": 0.9152490900055027,
+        "WAPE": 22.027242037237073,
+        "mape_coverage": 0.9361165690913466
+      },
+      "test": {
+        "n": 2394048,
+        "n_dropped_nonfinite": 0,
+        "MAE": 25.53508318406534,
+        "RMSE": 54.2125478116218,
+        "MAPE": 52.888747492498055,
+        "R2": 0.9291872934796119,
+        "WAPE": 19.406489476116416,
+        "mape_coverage": 0.9382614717833561,
+        "congestion_level_agreement": 0.6066666165423584
+      }
+    },
+    "st_gcn_gru": {
+      "status": "trained",
+      "servable": true,
+      "uses_weather": false,
+      "trained_at": "2026-10-20T13:47:27+00:00",
+      "fit_seconds": 931.0,
+      "epochs": 30,
+      "best_epoch": 23,
+      "device": "cuda",
+      "seed": 42,
+      "smoke_run": false,
+      "n_parameters": 11169,
+      "train_command": "scripts/train_deep.py --models st_gcn_gru --epochs 30",
+      "val": {
+        "n": 1795536,
+        "n_dropped_nonfinite": 0,
+        "MAE": 28.962140844419,
+        "RMSE": 59.886143359988196,
+        "MAPE": 52.778677535382336,
+        "R2": 0.9099174992793037,
+        "WAPE": 22.9974552374746,
+        "mape_coverage": 0.9361165690913466
+      },
+      "test": {
+        "n": 2394048,
+        "n_dropped_nonfinite": 0,
+        "MAE": 24.76301902628664,
+        "RMSE": 52.11173117664528,
+        "MAPE": 42.73626445722527,
+        "R2": 0.9345691504472399,
+        "WAPE": 18.819725969421874,
+        "mape_coverage": 0.9382614717833561,
+        "congestion_level_agreement": 0.6289452007645627
+      }
+    },
+    "random_forest_weather": {
+      "status": "trained",
+      "trained_at": "2026-10-20T14:05:16+00:00",
+      "fit_seconds": 35.3,
+      "uses_weather": true,
+      "servable": true,
+      "val": {
+        "n": 1795536,
+        "n_dropped_nonfinite": 0,
+        "MAE": 28.674071491308577,
+        "RMSE": 60.15733294811333,
+        "MAPE": 45.58845120157612,
+        "R2": 0.9090997892628107,
+        "WAPE": 22.768713098244177,
+        "mape_coverage": 0.9361165690913466
+      },
+      "test": {
+        "n": 2394048,
+        "n_dropped_nonfinite": 0,
+        "MAE": 26.654815858163996,
+        "RMSE": 56.16471563511862,
+        "MAPE": 37.19503451748756,
+        "R2": 0.9239956085274669,
+        "WAPE": 20.257478689635782,
+        "mape_coverage": 0.9382614717833561,
+        "congestion_level_agreement": 0.6102559347181009
+      },
+      "n_train_rows": 400000
+    },
+    "xgboost_weather": {
+      "status": "trained",
+      "trained_at": "2026-10-20T14:05:29+00:00",
+      "fit_seconds": 5.1,
+      "uses_weather": true,
+      "servable": true,
+      "val": {
+        "n": 1795536,
+        "n_dropped_nonfinite": 0,
+        "MAE": 27.01054976275688,
+        "RMSE": 55.206553239647974,
+        "MAPE": 49.14587235857036,
+        "R2": 0.9234458023359837,
+        "WAPE": 21.447789804125676,
+        "mape_coverage": 0.9361165690913466
+      },
+      "test": {
+        "n": 2394048,
+        "n_dropped_nonfinite": 0,
+        "MAE": 26.26053396057178,
+        "RMSE": 54.678404561637485,
+        "MAPE": 39.65448299570225,
+        "R2": 0.9279650555803571,
+        "WAPE": 19.95782713020709,
+        "mape_coverage": 0.9382614717833561,
+        "congestion_level_agreement": 0.6081979141604512
+      },
+      "n_train_rows": 400000,
+      "best_iteration": 223
+    }
+  }
+}

@@ -1,0 +1,257 @@
+{
+  "name": "st_gcn_gru",
+  "class": "STGCNGRU",
+  "hidden": 32,
+  "seq_len": 24,
+  "lag_hours": 24,
+  "input_scale": 1000.0,
+  "input_channels": [
+    "count/SCALE",
+    "log1p(count)/8"
+  ],
+  "static_features": [
+    "speed_limit/80",
+    "frc/6",
+    "min(distance_km,1)"
+  ],
+  "time_features": [
+    "hour_sin",
+    "hour_cos",
+    "dayofweek/6",
+    "is_weekend"
+  ],
+  "target": "hourly probe_count",
+  "target_scale": 1000.0,
+  "lr": 0.002,
+  "optimizer": "Adam",
+  "epochs": 30,
+  "best_epoch": 23,
+  "steps_per_epoch": null,
+  "batch": 2,
+  "seed": 42,
+  "torch": "2.11.0+cu130",
+  "python": "3.13.15",
+  "device": "cuda",
+  "command": "scripts/train_deep.py --models st_gcn_gru --epochs 30",
+  "n_parameters": 11169,
+  "param_shapes": {
+    "inp.weight": [
+      32,
+      2
+    ],
+    "inp.bias": [
+      32
+    ],
+    "g1.weight": [
+      32,
+      32
+    ],
+    "g1.bias": [
+      32
+    ],
+    "g2.weight": [
+      32,
+      32
+    ],
+    "g2.bias": [
+      32
+    ],
+    "gru.weight_ih_l0": [
+      96,
+      32
+    ],
+    "gru.weight_hh_l0": [
+      96,
+      32
+    ],
+    "gru.bias_ih_l0": [
+      96
+    ],
+    "gru.bias_hh_l0": [
+      96
+    ],
+    "head.0.weight": [
+      64,
+      39
+    ],
+    "head.0.bias": [
+      64
+    ],
+    "head.2.weight": [
+      1,
+      64
+    ],
+    "head.2.bias": [
+      1
+    ]
+  },
+  "panel_fingerprint": "869b424b62b26051",
+  "splits": {
+    "train": [
+      "2024-08-12 00:00:00",
+      "2024-08-23 23:00:00"
+    ],
+    "val": [
+      "2024-08-24 00:00:00",
+      "2024-08-26 23:00:00"
+    ],
+    "test": [
+      "2024-08-27 00:00:00",
+      "2024-08-30 23:00:00"
+    ]
+  },
+  "model_selection": "epoch with the lowest validation MAE",
+  "training_curve": [
+    {
+      "epoch": 1,
+      "train_mse_scaled": 0.010177698820528287,
+      "val_MAE": 35.61770248413086
+    },
+    {
+      "epoch": 2,
+      "train_mse_scaled": 0.00484409998302327,
+      "val_MAE": 32.78406524658203
+    },
+    {
+      "epoch": 3,
+      "train_mse_scaled": 0.00469483095777039,
+      "val_MAE": 42.72979736328125
+    },
+    {
+      "epoch": 4,
+      "train_mse_scaled": 0.004800711720796736,
+      "val_MAE": 33.030799865722656
+    },
+    {
+      "epoch": 5,
+      "train_mse_scaled": 0.0044491163847085674,
+      "val_MAE": 34.003604888916016
+    },
+    {
+      "epoch": 6,
+      "train_mse_scaled": 0.004053217526288927,
+      "val_MAE": 29.73700714111328
+    },
+    {
+      "epoch": 7,
+      "train_mse_scaled": 0.004315640103147204,
+      "val_MAE": 30.37849235534668
+    },
+    {
+      "epoch": 8,
+      "train_mse_scaled": 0.004301918463307062,
+      "val_MAE": 39.229400634765625
+    },
+    {
+      "epoch": 9,
+      "train_mse_scaled": 0.004036949044601165,
+      "val_MAE": 33.48102951049805
+    },
+    {
+      "epoch": 10,
+      "train_mse_scaled": 0.0039151021598004985,
+      "val_MAE": 31.188899993896484
+    },
+    {
+      "epoch": 11,
+      "train_mse_scaled": 0.003900771337837905,
+      "val_MAE": 33.255226135253906
+    },
+    {
+      "epoch": 12,
+      "train_mse_scaled": 0.004006459051874445,
+      "val_MAE": 31.115909576416016
+    },
+    {
+      "epoch": 13,
+      "train_mse_scaled": 0.0038772018267895633,
+      "val_MAE": 31.06137466430664
+    },
+    {
+      "epoch": 14,
+      "train_mse_scaled": 0.0037445578058040176,
+      "val_MAE": 34.65324401855469
+    },
+    {
+      "epoch": 15,
+      "train_mse_scaled": 0.0038764996198531157,
+      "val_MAE": 29.673280715942383
+    },
+    {
+      "epoch": 16,
+      "train_mse_scaled": 0.003644461724714593,
+      "val_MAE": 32.01553726196289
+    },
+    {
+      "epoch": 17,
+      "train_mse_scaled": 0.0037112402769297545,
+      "val_MAE": 29.52815055847168
+    },
+    {
+      "epoch": 18,
+      "train_mse_scaled": 0.0037661579162271033,
+      "val_MAE": 31.795074462890625
+    },
+    {
+      "epoch": 19,
+      "train_mse_scaled": 0.0039726020216843795,
+      "val_MAE": 34.10429382324219
+    },
+    {
+      "epoch": 20,
+      "train_mse_scaled": 0.0037929417074857546,
+      "val_MAE": 31.150922775268555
+    },
+    {
+      "epoch": 21,
+      "train_mse_scaled": 0.003961770542323085,
+      "val_MAE": 32.440670013427734
+    },
+    {
+      "epoch": 22,
+      "train_mse_scaled": 0.004052368611538489,
+      "val_MAE": 39.861202239990234
+    },
+    {
+      "epoch": 23,
+      "train_mse_scaled": 0.0037044496590593703,
+      "val_MAE": 28.962146759033203
+    },
+    {
+      "epoch": 24,
+      "train_mse_scaled": 0.0035940827243817843,
+      "val_MAE": 31.151647567749023
+    },
+    {
+      "epoch": 25,
+      "train_mse_scaled": 0.003768321029978447,
+      "val_MAE": 36.683746337890625
+    },
+    {
+      "epoch": 26,
+      "train_mse_scaled": 0.003609840984629551,
+      "val_MAE": 29.621746063232422
+    },
+    {
+      "epoch": 27,
+      "train_mse_scaled": 0.0036545758399520686,
+      "val_MAE": 32.04631423950195
+    },
+    {
+      "epoch": 28,
+      "train_mse_scaled": 0.003589611305746677,
+      "val_MAE": 29.788597106933594
+    },
+    {
+      "epoch": 29,
+      "train_mse_scaled": 0.003642648093479412,
+      "val_MAE": 30.23924446105957
+    },
+    {
+      "epoch": 30,
+      "train_mse_scaled": 0.0034745005618070104,
+      "val_MAE": 29.051246643066406
+    }
+  ],
+  "adjacency": "D^-1/2 (A+I) D^-1/2 over segments that share a junction (src/graph.py::segment_adjacency)"
+}

@@ -1,0 +1,27 @@
+{
+  "name": "New Delhi Traffic Probe & Analytics 2024 (Kaggle)",
+  "provider_note": "HERE-style probe data, road segments with geometry; hourly resolution",
+  "resolution_minutes": 60,
+  "target_kind": "probe_count",
+  "columns": {
+    "segment_id": "segment_id",
+    "timestamp": "timestamp",
+    "target": "probe_count",
+    "lag24": "probe_count_lag_24h",
+    "roll3": "probe_count_roll3_mean",
+    "speed_limit": "speed_limit",
+    "frc": "frc",
+    "distance_km": "distance_km"
+  },
+  "static_columns": {
+    "segment_id": "segment_id", "street_name": "street_name", "speed_limit": "speed_limit",
+    "frc": "frc", "distance_km": "distance_km",
+    "start_lon": "start_lon", "start_lat": "start_lat", "end_lon": "end_lon", "end_lat": "end_lat",
+    "geometry": "geometry_coords"
+  },
+  "splits": {
+    "train_end": "2024-08-24 00:00:00",
+    "val_end": "2024-08-27 00:00:00"
+  },
+  "validation": {"max_probe_count": 100000, "min_speed_limit": 5, "max_speed_limit": 150}
+}

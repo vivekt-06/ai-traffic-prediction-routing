@@ -1,0 +1,55 @@
+{
+  "name": "New Delhi Traffic Probe & Analytics 2024 (Kaggle)",
+  "target_kind": "probe_count",
+  "resolution_minutes": 60,
+  "period_start": "2024-08-12 00:00:00",
+  "period_end": "2024-08-30 23:00:00",
+  "hours": 456,
+  "days": 19.0,
+  "records": 11371728,
+  "segments": 24938,
+  "quality": {
+    "missing_target": 0,
+    "duplicate_keys": 0,
+    "segments_with_incomplete_history": 0,
+    "negative_target": 0,
+    "above_plausible_max": 0,
+    "zero_target_pct": 6.4,
+    "target_mean": 125.49,
+    "target_p50": 46.0,
+    "target_p99": 946.0,
+    "target_max": 2766,
+    "speed_limit_out_of_range": 0,
+    "zero_length_segments": 0
+  },
+  "coverage_bbox": {
+    "west": 77.07956,
+    "east": 77.33879,
+    "south": 28.47939,
+    "north": 28.64956
+  },
+  "splits": {
+    "train": {
+      "start": "2024-08-12 00:00:00",
+      "end": "2024-08-23 23:00:00",
+      "hours": 288
+    },
+    "val": {
+      "start": "2024-08-24 00:00:00",
+      "end": "2024-08-26 23:00:00",
+      "hours": 72
+    },
+    "test": {
+      "start": "2024-08-27 00:00:00",
+      "end": "2024-08-30 23:00:00",
+      "hours": 96
+    }
+  },
+  "mapping_missing_columns": [],
+  "limitations": [
+    "Target is hourly probe COUNT (traffic-volume proxy). The dataset contains no measured per-segment speed.",
+    "Hourly resolution: 15- and 30-minute forecast horizons are NOT supported by this data.",
+    "Only 19 days of data (one August window): no seasonality beyond weekly cycle can be learned.",
+    "No one-way / turn-restriction attribute: segments are routed as bidirectional."
+  ]
+}

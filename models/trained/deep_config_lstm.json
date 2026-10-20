@@ -1,0 +1,250 @@
+{
+  "name": "lstm",
+  "class": "SeqModel",
+  "hidden": 64,
+  "seq_len": 24,
+  "lag_hours": 24,
+  "input_scale": 1000.0,
+  "input_channels": [
+    "count/SCALE",
+    "log1p(count)/8"
+  ],
+  "static_features": [
+    "speed_limit/80",
+    "frc/6",
+    "min(distance_km,1)"
+  ],
+  "time_features": [
+    "hour_sin",
+    "hour_cos",
+    "dayofweek/6",
+    "is_weekend"
+  ],
+  "target": "hourly probe_count",
+  "target_scale": 1000.0,
+  "lr": 0.002,
+  "optimizer": "Adam",
+  "epochs": 30,
+  "best_epoch": 8,
+  "steps_per_epoch": 400,
+  "batch": 8192,
+  "seed": 42,
+  "torch": "2.11.0+cu130",
+  "python": "3.13.15",
+  "device": "cuda",
+  "command": "scripts/train_deep.py --models lstm gru --epochs 30",
+  "n_parameters": 55361,
+  "param_shapes": {
+    "rnn.weight_ih_l0": [
+      256,
+      2
+    ],
+    "rnn.weight_hh_l0": [
+      256,
+      64
+    ],
+    "rnn.bias_ih_l0": [
+      256
+    ],
+    "rnn.bias_hh_l0": [
+      256
+    ],
+    "rnn.weight_ih_l1": [
+      256,
+      64
+    ],
+    "rnn.weight_hh_l1": [
+      256,
+      64
+    ],
+    "rnn.bias_ih_l1": [
+      256
+    ],
+    "rnn.bias_hh_l1": [
+      256
+    ],
+    "head.0.weight": [
+      64,
+      71
+    ],
+    "head.0.bias": [
+      64
+    ],
+    "head.2.weight": [
+      1,
+      64
+    ],
+    "head.2.bias": [
+      1
+    ]
+  },
+  "panel_fingerprint": "869b424b62b26051",
+  "splits": {
+    "train": [
+      "2024-08-12 00:00:00",
+      "2024-08-23 23:00:00"
+    ],
+    "val": [
+      "2024-08-24 00:00:00",
+      "2024-08-26 23:00:00"
+    ],
+    "test": [
+      "2024-08-27 00:00:00",
+      "2024-08-30 23:00:00"
+    ]
+  },
+  "model_selection": "epoch with the lowest validation MAE",
+  "training_curve": [
+    {
+      "epoch": 1,
+      "train_mse_scaled": 0.005020046423305757,
+      "val_MAE": 29.89057731628418
+    },
+    {
+      "epoch": 2,
+      "train_mse_scaled": 0.0033285635366337375,
+      "val_MAE": 28.41008758544922
+    },
+    {
+      "epoch": 3,
+      "train_mse_scaled": 0.0031545457773609086,
+      "val_MAE": 28.1407527923584
+    },
+    {
+      "epoch": 4,
+      "train_mse_scaled": 0.0029712152294814587,
+      "val_MAE": 28.234336853027344
+    },
+    {
+      "epoch": 5,
+      "train_mse_scaled": 0.002799534825608134,
+      "val_MAE": 29.073060989379883
+    },
+    {
+      "epoch": 6,
+      "train_mse_scaled": 0.002653965646750294,
+      "val_MAE": 28.61292839050293
+    },
+    {
+      "epoch": 7,
+      "train_mse_scaled": 0.002566078983945772,
+      "val_MAE": 30.046846389770508
+    },
+    {
+      "epoch": 8,
+      "train_mse_scaled": 0.002433710489422083,
+      "val_MAE": 27.270971298217773
+    },
+    {
+      "epoch": 9,
+      "train_mse_scaled": 0.0023432886629598214,
+      "val_MAE": 28.529829025268555
+    },
+    {
+      "epoch": 10,
+      "train_mse_scaled": 0.002278318076278083,
+      "val_MAE": 29.476301193237305
+    },
+    {
+      "epoch": 11,
+      "train_mse_scaled": 0.002196347783319652,
+      "val_MAE": 28.04695701599121
+    },
+    {
+      "epoch": 12,
+      "train_mse_scaled": 0.0021127840923145414,
+      "val_MAE": 29.53807830810547
+    },
+    {
+      "epoch": 13,
+      "train_mse_scaled": 0.0020469923337805085,
+      "val_MAE": 28.98988914489746
+    },
+    {
+      "epoch": 14,
+      "train_mse_scaled": 0.0019861366352415645,
+      "val_MAE": 28.886014938354492
+    },
+    {
+      "epoch": 15,
+      "train_mse_scaled": 0.0019223974383203314,
+      "val_MAE": 28.41815757751465
+    },
+    {
+      "epoch": 16,
+      "train_mse_scaled": 0.001856297281337902,
+      "val_MAE": 28.705726623535156
+    },
+    {
+      "epoch": 17,
+      "train_mse_scaled": 0.0018215137589140794,
+      "val_MAE": 29.477283477783203
+    },
+    {
+      "epoch": 18,
+      "train_mse_scaled": 0.001754849512653891,
+      "val_MAE": 28.747400283813477
+    },
+    {
+      "epoch": 19,
+      "train_mse_scaled": 0.0017159723126678728,
+      "val_MAE": 29.94658088684082
+    },
+    {
+      "epoch": 20,
+      "train_mse_scaled": 0.0016661352742812596,
+      "val_MAE": 28.64751434326172
+    },
+    {
+      "epoch": 21,
+      "train_mse_scaled": 0.0016251321262097918,
+      "val_MAE": 28.806360244750977
+    },
+    {
+      "epoch": 22,
+      "train_mse_scaled": 0.0015927387555711903,
+      "val_MAE": 30.352643966674805
+    },
+    {
+      "epoch": 23,
+      "train_mse_scaled": 0.0015651589058688841,
+      "val_MAE": 29.214845657348633
+    },
+    {
+      "epoch": 24,
+      "train_mse_scaled": 0.001522714048041962,
+      "val_MAE": 28.89971351623535
+    },
+    {
+      "epoch": 25,
+      "train_mse_scaled": 0.0014952159640961326,
+      "val_MAE": 28.335420608520508
+    },
+    {
+      "epoch": 26,
+      "train_mse_scaled": 0.0014575813227565959,
+      "val_MAE": 29.4427433013916
+    },
+    {
+      "epoch": 27,
+      "train_mse_scaled": 0.0014400134401512331,
+      "val_MAE": 29.04990577697754
+    },
+    {
+      "epoch": 28,
+      "train_mse_scaled": 0.0014242453445331192,
+      "val_MAE": 29.928279876708984
+    },
+    {
+      "epoch": 29,
+      "train_mse_scaled": 0.0013945496632368304,
+      "val_MAE": 29.64261817932129
+    },
+    {
+      "epoch": 30,
+      "train_mse_scaled": 0.0013737320576910862,
+      "val_MAE": 29.029935836791992
+    }
+  ],
+  "adjacency": null
+}

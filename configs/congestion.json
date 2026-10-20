@@ -1,0 +1,11 @@
+{
+  "_doc": "Probe count -> estimated speed heuristic. UNCALIBRATED: the dataset has no measured speeds. Change values here, no code edits needed.",
+  "saturation_quantile": 0.90,
+  "k_speed_loss": 0.75,
+  "intensity_cap": 1.0,
+  "min_speed_kmh": 5.0,
+  "thresholds": {"LOW": 0.20, "MODERATE": 0.40, "HIGH": 0.60},
+  "colors": {"LOW": "#2fbf71", "MODERATE": "#f2c94c", "HIGH": "#f2994a", "SEVERE": "#eb5757", "UNKNOWN": "#8892a6"},
+  "negligible_saving_minutes": 1.0,
+  "max_snap_distance_m": 1500
+}

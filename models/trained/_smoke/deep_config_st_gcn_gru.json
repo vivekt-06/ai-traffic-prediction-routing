@@ -1,0 +1,112 @@
+{
+  "name": "st_gcn_gru",
+  "class": "STGCNGRU",
+  "hidden": 32,
+  "seq_len": 24,
+  "lag_hours": 24,
+  "input_scale": 1000.0,
+  "input_channels": [
+    "count/SCALE",
+    "log1p(count)/8"
+  ],
+  "static_features": [
+    "speed_limit/80",
+    "frc/6",
+    "min(distance_km,1)"
+  ],
+  "time_features": [
+    "hour_sin",
+    "hour_cos",
+    "dayofweek/6",
+    "is_weekend"
+  ],
+  "target": "hourly probe_count",
+  "target_scale": 1000.0,
+  "lr": 0.002,
+  "optimizer": "Adam",
+  "epochs": 1,
+  "best_epoch": 1,
+  "steps_per_epoch": null,
+  "batch": 2,
+  "seed": 42,
+  "torch": "2.11.0+cu130",
+  "python": "3.13.15",
+  "device": "cuda",
+  "command": "scripts/train_deep.py --smoke",
+  "n_parameters": 11169,
+  "param_shapes": {
+    "inp.weight": [
+      32,
+      2
+    ],
+    "inp.bias": [
+      32
+    ],
+    "g1.weight": [
+      32,
+      32
+    ],
+    "g1.bias": [
+      32
+    ],
+    "g2.weight": [
+      32,
+      32
+    ],
+    "g2.bias": [
+      32
+    ],
+    "gru.weight_ih_l0": [
+      96,
+      32
+    ],
+    "gru.weight_hh_l0": [
+      96,
+      32
+    ],
+    "gru.bias_ih_l0": [
+      96
+    ],
+    "gru.bias_hh_l0": [
+      96
+    ],
+    "head.0.weight": [
+      64,
+      39
+    ],
+    "head.0.bias": [
+      64
+    ],
+    "head.2.weight": [
+      1,
+      64
+    ],
+    "head.2.bias": [
+      1
+    ]
+  },
+  "panel_fingerprint": "869b424b62b26051",
+  "splits": {
+    "train": [
+      "2024-08-12 00:00:00",
+      "2024-08-23 23:00:00"
+    ],
+    "val": [
+      "2024-08-24 00:00:00",
+      "2024-08-26 23:00:00"
+    ],
+    "test": [
+      "2024-08-27 00:00:00",
+      "2024-08-30 23:00:00"
+    ]
+  },
+  "model_selection": "epoch with the lowest validation MAE",
+  "training_curve": [
+    {
+      "epoch": 1,
+      "train_mse_scaled": 0.034154641131560005,
+      "val_MAE": 141.0619354248047
+    }
+  ],
+  "adjacency": "D^-1/2 (A+I) D^-1/2 over segments that share a junction (src/graph.py::segment_adjacency)"
+}
